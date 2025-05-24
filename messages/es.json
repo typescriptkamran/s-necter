@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "products": "Productos",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto"
+  },
+  "product": {
+    "price": "€ {price}"
+  },
+  "meta": {
+    "title": "Miel Pura y Ghee Desi | Nature Harvest",
+    "description": "Compre miel pura de bosque y ghee desi A2. Productos 100% orgánicos y naturales entregados contra reembolso.",
+    "keywords": "miel orgánica, ghee desi, productos puros, miel natural"
+  },
+  "home": {
+    "hero": {
+      "title": "Miel Pura y Ghee Desi del Regazo de la Naturaleza",
+      "subtitle": "Directo de granjas orgánicas a tu mesa",
+      "cta": "Ordenar Ahora"
+    }
+  },
+  "cart": {
+    "title": "Tu Carrito",
+    "empty": "Tu carrito está vacío",
+    "total": "Total",
+    "checkout": "Proceder al Pago",
+    "quantity": "Cantidad"
+  },
+  "checkout": {
+    "title": "Pago",
+    "name": "Nombre Completo",
+    "phone": "Número de Teléfono",
+    "address": "Dirección de Entrega",
+    "paymentMethod": "Método de Pago",
+    "cod": "Contra Reembolso",
+    "summary": "Resumen del Pedido",
+    "placeOrder": "Realizar Pedido",
+    "namePlaceholder": "Ingrese su nombre completo",
+    "phonePlaceholder": "Ingrese su número de teléfono",
+    "addressPlaceholder": "Ingrese su dirección completa"
+  },
+  "thankYou": {
+    "title": "¡Gracias por su Pedido!",
+    "message": "Su pedido ha sido realizado con éxito.",
+    "orderNumber": "Número de Pedido: {orderId}",
+    "contactMessage": "Nos pondremos en contacto con usted en breve para confirmar su pedido.",
+    "backToHome": "Volver al Inicio"
+  },
+  "language": {
+    "en": "Inglés",
+    "es": "Español",
+    "de": "Alemán"
+  }
+}

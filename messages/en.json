@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "product": {
+    "price": "$ {price}"
+  },
+  "meta": {
+    "title": "Pure Honey & Desi Ghee | Nature Harvest",
+    "description": "Buy pure forest honey and A2 desi ghee. 100% organic and natural products delivered with cash on delivery.",
+    "keywords": "organic honey, desi ghee, pure products, natural honey"
+  },
+  "home": {
+    "hero": {
+      "title": "Pure Honey & Desi Ghee from Nature's Lap",
+      "subtitle": "Straight from organic farms to your table",
+      "cta": "Order Now"
+    }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "quantity": "Quantity"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "address": "Delivery Address",
+    "paymentMethod": "Payment Method",
+    "cod": "Cash on Delivery",
+    "summary": "Order Summary",
+    "placeOrder": "Place Order",
+    "namePlaceholder": "Enter your full name",
+    "phonePlaceholder": "Enter your phone number",
+    "addressPlaceholder": "Enter your complete address"
+  },
+  "thankYou": {
+    "title": "Thank You for Your Order!",
+    "message": "Your order has been successfully placed.",
+    "orderNumber": "Order Number: {orderId}",
+    "contactMessage": "We will contact you shortly to confirm your order.",
+    "backToHome": "Back to Home"
+  },
+  "language": {
+    "en": "English",
+    "es": "Spanish",
+    "de": "German"
+  }
+}

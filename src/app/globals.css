@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+@import "uploadthing/tw/v4";
+@source "../node_modules/@uploadthing/react/dist"; /** <-- depends on your project structure */
+@plugin 'tailwindcss-animate';
+
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --color-border: hsl(var(--border));
+    --color-input: hsl(var(--input));
+    --color-ring: hsl(var(--ring));
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
+
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+    --color-destructive: hsl(var(--destructive));
+    --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+
+    --color-accent: hsl(var(--accent));
+    --color-accent-foreground: hsl(var(--accent-foreground));
+
+    --color-popover: hsl(var(--popover));
+    --color-popover-foreground: hsl(var(--popover-foreground));
+
+    --color-card: hsl(var(--card));
+    --color-card-foreground: hsl(var(--card-foreground));
+
+    --color-natural-cream: #f9f6f1;
+    --color-natural-golden: #daa520;
+    --color-natural-charcoal: #2f2f2f;
+    --color-natural-olive: #6b8e23;
+    --color-natural-light-olive: #f2fce2;
+    --color-natural-sand: #e8ddb5;
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+    --animate-slide-in-right: slide-in-right 0.3s ease-out;
+    --animate-slide-out-right: slide-out-right 0.3s ease-out;
+    --animate-fade-in: fade-in 0.3s ease-out;
+
+    --font-sans: Inter, sans-serif;
+
+    /*@keyframes accordion-down {*/
+    /*    from {*/
+    /*        height: 0;*/
+    /*    }*/
+
+    /*    to {*/
+    /*        height: var(--radix-accordion-content-height);*/
+    /*    }*/
+    /*}*/
+
+    /*@keyframes accordion-up {*/
+    /*    from {*/
+    /*        height: var(--radix-accordion-content-height);*/
+    /*    }*/
+
+    /*    to {*/
+    /*        height: 0;*/
+    /*    }*/
+    /*}*/
+
+    @keyframes slide-in-right {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-out-right {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}
+
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+
+    /*@media (width >= --theme(--breakpoint-sm)) {*/
+    /*    max-width: none;*/
+    /*}*/
+
+    @media (width >=1400px) {
+        max-width: 1400px;
+    }
+}
+
+@layer base {
+    :root {
+        --background: 40 30% 96%;
+        --foreground: 20 10% 10%;
+
+        --card: 40 30% 96%;
+        --card-foreground: 20 10% 10%;
+
+        --popover: 40 30% 96%;
+        --popover-foreground: 20 10% 10%;
+
+        --primary: 43 76% 49%;
+        --primary-foreground: 40 30% 96%;
+
+        --secondary: 82 59% 35%;
+        --secondary-foreground: 40 30% 96%;
+
+        --muted: 40 20% 90%;
+        --muted-foreground: 20 10% 40%;
+
+        --accent: 82 59% 35%;
+        --accent-foreground: 40 30% 96%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 20 10% 85%;
+        --input: 20 10% 85%;
+        --ring: 43 76% 49%;
+
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+
+    body {
+        @apply bg-natural-cream text-natural-charcoal font-sans;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-semibold tracking-tight;
+    }
+
+    h1 {
+        @apply text-4xl md:text-5xl lg:text-6xl;
+    }
+
+    h2 {
+        @apply text-3xl md:text-4xl;
+    }
+
+    h3 {
+        @apply text-2xl md:text-3xl;
+    }
+
+    h4 {
+        @apply text-xl md:text-2xl;
+    }
+
+    h5 {
+        @apply text-lg md:text-xl;
+    }
+
+    .btn-primary {
+        @apply bg-natural-golden text-white py-2 px-6 rounded-md hover:bg-natural-golden/90 transition-colors font-medium;
+    }
+
+    .section-container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16;
+    }
+}

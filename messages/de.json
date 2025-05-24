@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "about": "Über Uns",
+    "contact": "Kontakt"
+  },
+  "product": {
+    "price": "€ {price}"
+  },
+  "meta": {
+    "title": "Reiner Honig & Desi Ghee | Nature Harvest",
+    "description": "Kaufen Sie reinen Waldhonig und A2 Desi Ghee. 100% organische und natürliche Produkte mit Nachnahme geliefert.",
+    "keywords": "Bio-Honig, Desi Ghee, reine Produkte, natürlicher Honig"
+  },
+  "home": {
+    "hero": {
+      "title": "Reiner Honig & Desi Ghee aus dem Schoß der Natur",
+      "subtitle": "Direkt von Bio-Bauernhöfen auf Ihren Tisch",
+      "cta": "Jetzt Bestellen"
+    }
+  },
+  "cart": {
+    "title": "Ihr Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "total": "Gesamt",
+    "checkout": "Zur Kasse",
+    "quantity": "Menge"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "name": "Vollständiger Name",
+    "phone": "Telefonnummer",
+    "address": "Lieferadresse",
+    "paymentMethod": "Zahlungsmethode",
+    "cod": "Nachnahme",
+    "summary": "Bestellübersicht",
+    "placeOrder": "Bestellung Aufgeben",
+    "namePlaceholder": "Geben Sie Ihren vollständigen Namen ein",
+    "phonePlaceholder": "Geben Sie Ihre Telefonnummer ein",
+    "addressPlaceholder": "Geben Sie Ihre vollständige Adresse ein"
+  },
+  "thankYou": {
+    "title": "Vielen Dank für Ihre Bestellung!",
+    "message": "Ihre Bestellung wurde erfolgreich aufgegeben.",
+    "orderNumber": "Bestellnummer: {orderId}",
+    "contactMessage": "Wir werden uns in Kürze mit Ihnen in Verbindung setzen, um Ihre Bestellung zu bestätigen.",
+    "backToHome": "Zurück zur Startseite"
+  },
+  "language": {
+    "en": "Englisch",
+    "es": "Spanisch",
+    "de": "Deutsch"
+  }
+}
