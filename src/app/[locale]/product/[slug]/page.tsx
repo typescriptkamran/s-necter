@@ -1,33 +1,32 @@
 // page.tsx
-import { notFound } from 'next/navigation';
-import {  fetchProductWithSlug } from '@/helpers/fetch';
-import { Card, CardContent } from '@/components/generic/Card';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
-import Sidebar from '@/components/cart/Sidebar';
-import AddToCart from '@/components/product/AddToCart';
-import { Metadata } from 'next';
-import Image from 'next/image'
-// import {routing} from '@/i18n/routing'
-// import { supabase } from '@/supabase/db';
-// import { Product } from '@/types';
+import { notFound } from "next/navigation";
+import { Card, CardContent } from "@/components/generic/Card";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
+import Sidebar from "@/components/cart/Sidebar";
+import AddToCart from "@/components/product/AddToCart";
+import { Metadata } from "next";
+import Image from "next/image";
+import { supabase } from "@/supabase/db";
+
 interface PageProps {
-  // params: { slug: string; locale: string };
-  params: Promise<{ slug: string; locale: string }> ;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
-export async function generateMetadata({ params: $params }: PageProps): Promise<Metadata> {
-  const params = await $params
-  const { error, data } = await fetchProductWithSlug(params.slug);
-  if (error || !data || data.length === 0) return {};
+export async function generateMetadata(
+  { params: $params }: PageProps,
+): Promise<Metadata> {
+  const params = await $params;
+  const { error, data: product } = await getProductWithSlug(params.slug);
+  if (error || !product) return {};
 
-  const product = data[0];
   return {
     title: product.name,
     description: product.description,
     openGraph: {
       title: product.name,
       description: product.description,
+      // TODO FIX
       url: `http://localhost:3000/${params.locale}/product/${params.slug}`,
       images: [
         {
@@ -38,50 +37,23 @@ export async function generateMetadata({ params: $params }: PageProps): Promise<
         },
       ],
       locale: params.locale,
-      type: 'website',
+      type: "website",
     },
   };
 }
 
-// const getProducts = async () => {
-//   "use server"
-//  let data: Product[] | null = null, error: string = "";
-//     try {
-//         const {error: $error, data: $data} = await supabase.from('organic_Product').select('*')
-//         data = $data as Product[] | null;
-//         error = $error?.message ?? ''
-//     } catch (e) {
-//       console.error(e)
-//        error = e instanceof Error ? e.message : String(e)
-      
-//     }
-//     return {error, data};
-// }
+async function getProductWithSlug(slug: string) {
+  return supabase.from("organic_Product").select().eq("slug", slug).single();
+}
 
-// export async function generateStaticParams() {
-//   const { data, error } = await getProducts();
-
-//   if (error || !data) return [];
-
-//  return routing.locales.flatMap((locale) =>
-//     data.map((product) => ({
-//       slug: product.slug,
-//       locale,
-//     }))
-//   );
-
-// }
-
-// export default async function ProductPage({ params }: PageProps) {
 export default async function ProductPage({ params: $params }: PageProps) {
-  const params = await $params
+  const params = await $params;
   // console.log(params)
-  const { error, data } = await fetchProductWithSlug(params.slug);
+  const { error, data: product } = await getProductWithSlug(params.slug);
 
-  if (error || !data || data.length === 0) return notFound();
+  if (error || !product) return notFound();
 
-  const product = data[0];
-  if (product.state === 'archived') return notFound();
+  if (product.state === "archived") return notFound();
 
   return (
     <div className="min-h-screen flex flex-col">

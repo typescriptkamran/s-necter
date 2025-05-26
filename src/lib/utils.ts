@@ -1,10 +1,10 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import type {ZodObject, ZodSafeParseResult} from "zod/v4";
-import {z} from 'zod/v4'
+import type { ZodObject, ZodSafeParseResult } from "zod/v4";
+import { z } from 'zod/v4'
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
-} 
+}
 
 
 export function withValidatedAction<Schema extends ZodObject<any>>(
@@ -16,21 +16,34 @@ export function withValidatedAction<Schema extends ZodObject<any>>(
     await handler(result);
   };
 }
+// import { z, ZodObject, ZodSafeParseResult } from 'zod';
+
 export function withValidatedStateAction<Schema extends ZodObject<any>>(
   schema: Schema,
-  handler: (prevState: z.infer<Schema>, parsed: ZodSafeParseResult<z.infer<Schema>>) => Promise<void>
-): (prevState: z.infer<Schema>, formData: FormData) => void {
-  return async (prevState: z.infer<Schema>, formData: FormData): Promise<void> => {
-    const result = formDataToObject(formData, schema);
-    await handler(prevState,result);
+  handler: (
+    parsed: ZodSafeParseResult<z.infer<Schema>>,
+    prevState: z.infer<Schema>
+  ) => Promise<z.infer<Schema>>
+): (state: z.infer<Schema>, payload: FormData) => Promise<z.infer<Schema>> {
+  return async (
+    state: z.infer<Schema>,
+    payload: FormData
+  ): Promise<z.infer<Schema>> => {
+    console.log(state, payload);
+
+    const result = formDataToObject(payload, schema);
+
+    return handler(result, state);
   };
 }
+
 
 function formDataToObject<Schema extends ZodObject<any>>(
   formData: FormData,
   schema: Schema
 ): ZodSafeParseResult<z.infer<Schema>> {
   const raw: Record<string, any> = {};
+  // console.log(formData)
 
   for (const [key, value] of formData.entries()) {
     raw[key] = value;

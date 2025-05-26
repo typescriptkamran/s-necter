@@ -26,4 +26,4 @@ export interface Order {
   createdAt: string;
 }
 export type OrderStatus = (typeof Constants.public.Enums.OrderStatus)[number]
-export type ProductStatus = (typeof Constants.public.Enums.ProductActiveState)[number]
+export type ProductState = (typeof Constants.public.Enums.ProductActiveState)[number]

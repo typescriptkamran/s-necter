@@ -1,7 +1,6 @@
 "use client";
 import React, { createContext, useContext, useReducer } from "react";
 import { Order, OrderStatus } from "@/types";
-import { updateOrderStatus } from "@/helpers/update";
 import { toast } from "sonner";
 
 // 1. Define actions
@@ -74,13 +73,8 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = (
     id: number,
     status: OrderStatus,
   ) => {
-    const { data, error } = await updateOrderStatus(id, status);
-    if (data) {
       dispatch({ type: "UPDATE_STATUS", payload: { id, status } });
       toast.success(`Status Updated to ${status}`);
-    } else {
-      toast.error(`Failed to Update Status: ${error}`);
-    }
   };
   const values = { ...state, dispatch, updateStatus, setOrders };
 

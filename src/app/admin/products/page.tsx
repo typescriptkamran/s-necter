@@ -5,7 +5,7 @@ import AddUI from "@/components/product/Add";
 import EditUI from "@/components/product/Edit";
 import ProductList from "@/components/product/List";
 
-
+export const dynamic = 'force-dynamic'; // Forces the page to be SSR, disables caching
 const ProductsManagement = async () => {
 
   const {data: productData, error: productError} = await getProducts();

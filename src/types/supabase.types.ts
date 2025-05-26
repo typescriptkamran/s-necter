@@ -76,7 +76,7 @@ export type Database = {
           price: number
           slug: string
           state: Database["public"]["Enums"]["ProductActiveState"]
-          weight: string
+          weight: number
         }
         Insert: {
           categoryId: number
@@ -90,7 +90,7 @@ export type Database = {
           price: number
           slug?: string
           state: Database["public"]["Enums"]["ProductActiveState"]
-          weight?: string
+          weight?: number
         }
         Update: {
           categoryId?: number
@@ -104,7 +104,7 @@ export type Database = {
           price?: number
           slug?: string
           state?: Database["public"]["Enums"]["ProductActiveState"]
-          weight?: string
+          weight?: number
         }
         Relationships: [
           {

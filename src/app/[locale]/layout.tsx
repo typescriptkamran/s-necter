@@ -11,7 +11,6 @@ import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { Toaster } from "sonner";
 
-
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -58,13 +57,15 @@ export default async function RootLayout({
                         {children}
                     </CartProvider>
                 </NextIntlClientProvider>
-            <Toaster
-                toastOptions={{classNames:{
-                    toast: 'dark:!bg-natural-charcoal',
-                    title: '!text-natural-golden',
-                    icon: '!text-natural-golden'
-                }}}
-            />
+                <Toaster
+                    toastOptions={{
+                        classNames: {
+                            toast: "dark:!bg-natural-charcoal",
+                            title: "!text-natural-golden",
+                            icon: "!text-natural-golden",
+                        },
+                    }}
+                />
             </body>
         </html>
     );

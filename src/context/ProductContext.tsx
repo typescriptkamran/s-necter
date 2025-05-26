@@ -1,7 +1,5 @@
 "use client";
 import React, { createContext, useContext, useReducer } from "react";
-import { updateProduct as updateProductF } from "@/helpers/update";
-import { addProduct as addProductF } from "@/helpers/add";
 import { Product } from "@/types";
 import { toast } from "sonner";
 import { Constants } from "@/types/supabase.types";
@@ -80,49 +78,29 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = (
 ) => {
     const [state, dispatch] = useReducer(ProductReducer, initialState);
 
-   
     const setPopupState: ProductContextType["setPopupState"] = async (
         popupState: PopupState,
     ) => {
         dispatch({ type: "SET_POPUP", payload: popupState });
     };
-
+    // FIXME
     const updateProduct: ProductContextType["updateProduct"] = async (product: Product) => {
-        const { error} = await updateProductF(product)
-        if (error) toast.error(error)
-        else {
-            dispatch({type: 'EDIT_PRODUCT', payload: {product}})
-            toast.success("Product Updated")
-            setPopupState({type: 'none'})
-        }
+        dispatch({type: 'EDIT_PRODUCT', payload: {product}})
+        toast.success("Product Updated")
+        setPopupState({type: 'none'})
     }
     const archiveProduct: ProductContextType["archiveProduct"] = async (id: Product["id"]) => {
-        const response = await fetch('/api/products/archive', {
-            method: "POST",
-            body: JSON.stringify({id}), 
-        });
-
-        const result = await response.json();
-
-        if (!response.ok || result.error) {
-            toast.error("Failed To Archive Product" + result.error);
-        } else {
             dispatch({type: 'CHANGE_STATE', payload: {id: id!, state: 'archived'}})
-            
             toast.success("Product Deleted");
-        }
     }
     
     const addProduct: ProductContextType["addProduct"] = async (product: Product) => {
-        const {data, error} = await addProductF(product);
-        if  (error) toast.error("Failed To Add Product" + error);
-        else {
-            dispatch({type: 'ADD_PRODUCT', payload: data!})
+            dispatch({type: 'ADD_PRODUCT', payload: product!})
             toast.success("Product Added");
             dispatch({
                 type: 'SET_POPUP', payload: {type: 'none'}
             })
-        }
+        
     }
 
     const setProducts:ProductContextType["setProducts"] = async (products: Product[]) => {

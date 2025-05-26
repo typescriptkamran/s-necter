@@ -7,15 +7,14 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/generic/Table";
-import { Category, Product } from "@/types";
+import { Category, Product, ProductState } from "@/types";
 import Image from "next/image";
 import { EditButton } from "@/app/admin/products/client";
-import {  changeProductStatus } from "@/actions/admin/products";
+import { changeProductStatus } from "@/actions/admin/products";
 import { Button } from "@/components/generic/Button";
-import { Archive, BookOpen, Info } from "lucide-react";
-import React, { useEffect } from "react";
+import { Archive, BookOpen, Info, LoaderCircle } from "lucide-react";
+import React, { useActionState, useEffect } from "react";
 import { useProduct } from "@/context/ProductContext";
-import { Constants } from "@/types/supabase.types";
 
 const ProductList = (
     { productData, categoriesData }: {
@@ -106,30 +105,49 @@ const ProductList = (
 const ArchiveButton = (
     { id, state }: {
         id: number;
-        state: (typeof Constants.public.Enums.ProductActiveState)[number];
+        state: ProductState;
     },
 ) => {
-    // const {}= useFormState()
+    const { dispatch } = useProduct();
+    const [actionState, formAction, isPending] = useActionState(
+        changeProductStatus,
+        { success: null, id, state },
+    );
+    useEffect(() => {
+        if (actionState.success) {
+            dispatch({
+                type: "CHANGE_STATE",
+                payload: { id: actionState.id, state: actionState.state },
+            });
+        }
+    }, [actionState]);
     return (
-        <form action={changeProductStatus}>
+        <form action={formAction}>
             <input
                 type="hidden"
                 value={id}
                 name="id"
             />
-            <input type="hidden" value={state} name="state"/>
+            <input
+                type="hidden"
+                value={state === "archived" ? "normal" : "archived"}
+                name="state"
+            />
             <Button
                 variant="outline"
                 size="sm"
+                disabled={isPending}
             >
-                {state !==
-                        "archived"
-                    ? <Archive size={16} />
-                    : (
-                        <BookOpen
-                            size={16}
-                        />
-                    )}
+                {(!isPending)
+                    ? state !==
+                            "archived"
+                        ? <Archive size={16} />
+                        : (
+                            <BookOpen
+                                size={16}
+                            />
+                        )
+                    : <LoaderCircle size={16} className="animate-spin" />}
             </Button>
         </form>
     );

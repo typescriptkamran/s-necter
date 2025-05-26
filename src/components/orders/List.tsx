@@ -1,5 +1,5 @@
 "use client";
-import type { Order, OrderStatus as OrderStatusType, Product } from "@/types";
+import type { Order, OrderStatus, Product } from "@/types";
 import {
     Table,
     TableBody,
@@ -8,28 +8,29 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/generic/Table";
-import {Info} from 'lucide-react'
-import React, { useEffect } from "react";
+import {CheckCircle, Clock, Info, LoaderCircle} from 'lucide-react'
+import React, { useActionState, useEffect } from "react";
 import { useOrder } from "@/context/OrderContext";
 import { Button } from "@/components/generic/Button";
+import { changeOrderStatus } from "@/actions/admin/orders";
 // import { useProduct } from "@/context/ProductContext";
 
 const OrderList = ({orders, products}: {orders: Order[], products: Product[]}) => {
-    const { updateStatus,setOrders, filterBy, orderList } = useOrder();
+
+    const { setOrders, filterBy, orderList } = useOrder();
     // const {productList} = useProduct();
     const filteredOrders = filterBy === "all"
         ? orderList
         : orderList.filter((order) => order.status === filterBy);
 
-    function getOtherStatus(status: OrderStatusType) {
-        return status === "completed" ? "pending" : "completed";
-    }
+    // function getOtherStatus(status: OrderStatusType) {
+    //     return status === "completed" ? "pending" : "completed";
+    // }
 
     useEffect(() => {
         setOrders(orders)
     }, [orders])
 
-    console.log(orderList[0])
 
     return (
         <div className="bg-white rounded-md shadow-sm overflow-hidden">
@@ -88,23 +89,7 @@ const OrderList = ({orders, products}: {orders: Order[], products: Product[]}) =
                                         </span>
                                     </TableCell>
                                     <TableCell>
-                                        <Button
-                                            variant={order.status === "pending"
-                                                ? "default"
-                                                : "outline"}
-                                            size="sm"
-                                            onClick={() => {
-                                                updateStatus(
-                                                    order.id,
-                                                    getOtherStatus(
-                                                        order.status,
-                                                    ),
-                                                );
-                                            }}
-                                        >
-                                            Mark as{" "}
-                                            {getOtherStatus(order.status)}
-                                        </Button>
+                                    <MarkButton id={order.id} state={order.status}/>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -131,3 +116,54 @@ const OrderList = ({orders, products}: {orders: Order[], products: Product[]}) =
     );
 };
 export default OrderList;
+
+const MarkButton = (
+    { id, state }: {
+        id: number;
+        state: OrderStatus;
+    },
+) => {
+    const { dispatch } = useOrder();
+    const [actionState, formAction, isPending] = useActionState(
+        changeOrderStatus,
+        { success: null, id, state },
+    );
+    useEffect(() => {
+        if (actionState.success) {
+            dispatch({
+                type: "UPDATE_STATUS",
+                payload: { id: actionState.id, status: actionState.state },
+            });
+        }
+    }, [actionState]);
+    return (
+        <form action={formAction}>
+            <input
+                type="hidden"
+                value={id}
+                name="id"
+            />
+            <input
+                type="hidden"
+                value={state === "completed" ? "pending" : "completed"}
+                name="state"
+            />
+            <Button
+                variant="outline"
+                size="sm"
+                disabled={isPending}
+            >
+                {(!isPending)
+                    ? state !==
+                            "completed"
+                        ? <CheckCircle size={16} />
+                        : (
+                            <Clock
+                                size={16}
+                            />
+                        )
+                    : <LoaderCircle size={16} className="animate-spin" />}
+            </Button>
+        </form>
+    );
+};

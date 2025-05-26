@@ -6,7 +6,7 @@ import { supabase } from "@/supabase/db";
 import Filter from "./client";
 import { getProducts } from "@/supabase/methods";
 
-
+export const dynamic = 'force-dynamic'; // Forces the page to be SSR, disables caching
 const getOrders = async () => {
     "use server"
     let data: Order[] | null = null, error = "";
