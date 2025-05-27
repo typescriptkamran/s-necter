@@ -48,11 +48,9 @@ async function getProductWithSlug(slug: string) {
 
 export default async function ProductPage({ params: $params }: PageProps) {
   const params = await $params;
-  // console.log(params)
   const { error, data: product } = await getProductWithSlug(params.slug);
-
   if (error || !product) return notFound();
-
+  
   if (product.state === "archived") return notFound();
 
   return (

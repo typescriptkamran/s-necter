@@ -7,7 +7,7 @@ import { z } from "zod/v4";
 import { Constants } from "@/types/supabase.types";
 const AddProductSchema = z.object({
     name: z.coerce.string().nonempty().nonoptional(),
-    slug: z.coerce.string().nonempty().nonoptional(),
+    slug: z.coerce.string().nonempty().nonoptional().transform((slug) => slug.trim()),
     description: z.coerce.string().nonempty().nonoptional(),
     image: z.coerce.string().nonempty().nonoptional(),
     price: z.coerce.number().nonnegative(),
@@ -38,7 +38,7 @@ const EditProductSchema = z.object({
     success: z.coerce.boolean().nullable(),
     id: z.coerce.number().nonnegative().nonoptional(),
     name: z.coerce.string().nonempty().nonoptional(),
-    slug: z.coerce.string().nonempty().nonoptional(),
+    slug: z.coerce.string().nonempty().nonoptional().transform(slug => slug.trim()),
     description: z.coerce.string().nonempty().nonoptional(),
     image: z.coerce.string().nonempty().nonoptional(),
     price: z.coerce.number().nonnegative(),
