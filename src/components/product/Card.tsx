@@ -5,7 +5,7 @@ import Image from "next/image";
 import AddToCart from "@/components/product/AddToCart";
 import { Link } from "@/i18n/navigation";
 import { Button } from "../generic/Button";
-import { Link2, LinkIcon } from "lucide-react";
+import {  LinkIcon } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
