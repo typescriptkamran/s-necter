@@ -124,15 +124,15 @@ const ContactPage: React.FC = () => {
         </section>
         
         {/* Map Section */}
-        <section className="container mx-auto px-4 py-16">
+        {/* <section className="container mx-auto px-4 py-16">
           <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Find Us</h2>
           <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg bg-gray-200 h-80">
-            {/* Placeholder for an actual map. In a real application, you'd use Google Maps or similar */}
+            {/* Placeholder for an actual map. In a real application, you'd use Google Maps or similar 
             <div className="w-full h-full flex items-center justify-center bg-gray-200">
               <p className="text-gray-500 text-lg">Map Location Placeholder</p>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       
       <Footer />

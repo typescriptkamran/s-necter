@@ -207,6 +207,7 @@ export type Database = {
     Enums: {
       OrderStatus: "completed" | "pending"
       ProductActiveState: "archived" | "normal" | "featured"
+      ProductWeightUnit: "kg" | "l"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -324,6 +325,7 @@ export const Constants = {
     Enums: {
       OrderStatus: ["completed", "pending"],
       ProductActiveState: ["archived", "normal", "featured"],
+      ProductWeightUnit: ["kg", "l"],
     },
   },
 } as const

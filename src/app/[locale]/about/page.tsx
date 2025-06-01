@@ -112,7 +112,7 @@ const AboutPage: React.FC = () => {
         </section>
         
         {/* Team Section */}
-        <section className="container mx-auto px-4 py-16">
+        {/* <section className="container mx-auto px-4 py-16">
           <h2 className="text-2xl md:text-3xl font-semibold mb-10 text-center">Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center">
@@ -157,7 +157,7 @@ const AboutPage: React.FC = () => {
               <p className="text-gray-600">Quality Control Manager</p>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       
       <Footer />

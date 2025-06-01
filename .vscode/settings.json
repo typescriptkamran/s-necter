@@ -2,5 +2,6 @@
     "cSpell.words": [
         "nonoptional",
         "supabase"
-    ]
+    ],
+    "npm.packageManager": "bun"
 }

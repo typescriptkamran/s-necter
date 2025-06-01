@@ -67,7 +67,7 @@ const Index = async () => {
         </section>
         
         {/* Testimonials Section */}
-        <section className="section-container py-16">
+        {/* <section className="section-container py-16">
           <div className="text-center mb-12">
             <h2 className="mb-4">What Our Customers Say</h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-700">
@@ -118,7 +118,7 @@ const Index = async () => {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       <Footer />
     </div>
