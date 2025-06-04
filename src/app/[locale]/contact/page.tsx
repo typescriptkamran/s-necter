@@ -12,12 +12,12 @@ import { Phone, Mail,
   } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Form submission logic would go here
-    console.log('Contact form submitted');
-    // You could add toast notification here
-  };
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   // Form submission logic would go here
+  //   console.log('Contact form submitted');
+  //   // You could add toast notification here
+  // };
 
   return (
     <div className="min-h-screen flex flex-col">
