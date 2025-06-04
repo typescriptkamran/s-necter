@@ -1,26 +1,41 @@
 "use client"
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from '@/i18n/navigation';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/generic/Button';
 import { useCart } from '@/context/CartContext';
 import LanguageSelector from '@/components/LanguageSelector';
 import {useTranslations} from "next-intl";
-
+import {motion, useScroll, useTransform} from 'motion/react'
+import {usePathname} from '@/i18n/navigation'
 const NavBar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { cartItems, toggleCartSidebar } = useCart();
   const t = useTranslations('nav');
-
+  const pathname = usePathname()
+  const {scrollY} = useScroll()
+  const background = useTransform(scrollY, [0, 50], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 1)"]);
+  const color = useTransform(scrollY, [0, 50], ["#F9F6F1", "#000000"]);
+  const [animate,setAnimate] = useState(false)
+  useEffect(() => {
+    if (pathname === '/') {
+      setAnimate(true)
+    } else setAnimate(false)
+  }, [pathname])
   // Calculate total items in cart
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-white shadow-sm">
+    <motion.header
+        style={animate ? {
+          backgroundColor: background,
+          color
+        }:{}}
+        className={(animate ? '' : 'bg-white') + ' ' + "fixed w-full top-0 z-50 shadow-sm"}>
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-xl font-semibold">
-          Nature Harvest
+          KhalisG
         </Link>
 
         {/* Desktop Navigation */}
@@ -45,11 +60,13 @@ const NavBar: React.FC = () => {
           <LanguageSelector />
 
           {/* Cart Button */}
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="icon" 
+            // size="icon"
             onClick={toggleCartSidebar}
-            className="relative"
+
+            className={(animate ? 'border-transparent' : '') + " " + "relative bg-transparent"}
           >
             <ShoppingCart size={18} />
             {cartItemCount > 0 && (
@@ -106,7 +123,7 @@ const NavBar: React.FC = () => {
           </div>
         </nav>
       )}
-    </header>
+    </motion.header>
   );
 };
 

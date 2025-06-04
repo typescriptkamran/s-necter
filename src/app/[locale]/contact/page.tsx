@@ -19,12 +19,6 @@ const ContactPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* <SEOHead 
-        title="Contact Us - NatureHarvest"
-        description="Get in touch with NatureHarvest. We're here to answer your questions and provide support."
-        keywords="contact natureharvest, customer support, inquiry, help"
-      />
-       */}
       <NavBar />
       <Sidebar />
       
@@ -60,12 +54,12 @@ const ContactPage: React.FC = () => {
                   <Mail size={32} />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Email</h3>
-                <p className="text-gray-700">info@natureharvest.com</p>
-                <p className="text-gray-700">support@natureharvest.com</p>
+                <p className="text-gray-700">info@khalisg.com</p>
+                <p className="text-gray-700">support@khalisg.com</p>
               </CardContent>
             </Card>
             
-            <Card className="text-center">
+            {/* <Card className="text-center">
               <CardContent className="pt-6">
                 <div className="mb-4 text-natural-olive flex justify-center">
                   <Info size={32} />
@@ -74,12 +68,12 @@ const ContactPage: React.FC = () => {
                 <p className="text-gray-700">123 Nature Street</p>
                 <p className="text-gray-700">Green Valley, Earth</p>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
         </section>
         
         {/* Contact Form */}
-        <section className="bg-gray-50 py-16">
+        {/* <section className="bg-gray-50 py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Send Us a Message</h2>
@@ -122,17 +116,17 @@ const ContactPage: React.FC = () => {
             </div>
           </div>
         </section>
-        
+         */}
         {/* Map Section */}
-        <section className="container mx-auto px-4 py-16">
+        {/* <section className="container mx-auto px-4 py-16">
           <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">Find Us</h2>
           <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg bg-gray-200 h-80">
-            {/* Placeholder for an actual map. In a real application, you'd use Google Maps or similar */}
+            {/* Placeholder for an actual map. In a real application, you'd use Google Maps or similar 
             <div className="w-full h-full flex items-center justify-center bg-gray-200">
               <p className="text-gray-500 text-lg">Map Location Placeholder</p>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       
       <Footer />

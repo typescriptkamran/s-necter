@@ -15,6 +15,7 @@ import { Button } from "@/components/generic/Button";
 import { Archive, BookOpen, Info, LoaderCircle } from "lucide-react";
 import React, { useActionState, useEffect } from "react";
 import { useProduct } from "@/context/ProductContext";
+import { useSearch } from "@/context/SearchContext";
 
 const ProductList = (
     { productData, categoriesData }: {
@@ -22,13 +23,25 @@ const ProductList = (
         categoriesData: Category[];
     },
 ) => {
-    const { productList, setProducts } = useProduct();
+    const { setProducts } = useProduct();
+    const { dispatch, state } = useSearch();
     useEffect(() => {
         setProducts(productData);
+        if (productData.length > 0) {
+            dispatch({
+                type: "SET_DATASET",
+                payload: productData,
+            });
+        }
     }, [productData]);
+    const products = (state.dataSet  as Product[]).filter((data: Product) =>
+        data.name?.toLowerCase().includes(
+            state.searchTerm.toLowerCase(),
+        )
+    );
     return (
         <div className="bg-white rounded-md shadow-sm overflow-hidden">
-            {productList.length > 0
+            {products.length > 0
                 ? (
                     <Table>
                         <TableHeader>
@@ -45,7 +58,7 @@ const ProductList = (
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {productList.map((product: Product) => (
+                            {products.map((product: Product) => (
                                 <TableRow key={product.id}>
                                     <TableCell>
                                         <Image
@@ -61,9 +74,10 @@ const ProductList = (
                                     </TableCell>
                                     <TableCell>
                                         <span className="capitalize">
-                                            {categoriesData.find((category) =>
-                                                category.id ===
-                                                    product.categoryId
+                                            {categoriesData.find((
+                                                category,
+                                            ) => category.id ===
+                                                product.categoryId
                                             )?.name}
                                         </span>
                                     </TableCell>

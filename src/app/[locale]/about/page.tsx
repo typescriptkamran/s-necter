@@ -10,11 +10,7 @@ import Image from 'next/image'
 const AboutPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* <SEOHead 
-        title="About Us - NatureHarvest"
-        description="Learn about NatureHarvest and our mission to bring pure and organic products from nature to your doorstep."
-        keywords="organic food, natural products, pure honey, about natureharvest"
-      /> */}
+
       
       <NavBar />
       <Sidebar />
@@ -25,7 +21,7 @@ const AboutPage: React.FC = () => {
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-6">Our Story</h1>
             <p className="max-w-3xl mx-auto text-lg text-gray-700">
-              We started NatureHarvest with a simple mission: to bring the purest products 
+              We started KhalisG with a simple mission: to bring the purest products 
               from nature directly to your doorstep, without any additives or processing.
             </p>
           </div>
@@ -37,7 +33,7 @@ const AboutPage: React.FC = () => {
             <div>
               <h2 className="text-2xl md:text-3xl font-semibold mb-6">Our Mission</h2>
               <p className="text-gray-700 mb-4">
-                At NatureHarvest, we believe in the power of pure, unprocessed natural products. 
+                At KhalisG, we believe in the power of pure, unprocessed natural products. 
                 We work directly with local farmers and producers who follow traditional 
                 methods to create products just as nature intended.
               </p>
@@ -55,7 +51,7 @@ const AboutPage: React.FC = () => {
                   width={862}
                   height={575}
                 src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" 
-                alt="NatureHarvest Team" 
+                alt="KhalisG Team" 
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -112,7 +108,7 @@ const AboutPage: React.FC = () => {
         </section>
         
         {/* Team Section */}
-        <section className="container mx-auto px-4 py-16">
+        {/* <section className="container mx-auto px-4 py-16">
           <h2 className="text-2xl md:text-3xl font-semibold mb-10 text-center">Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center">
@@ -157,7 +153,7 @@ const AboutPage: React.FC = () => {
               <p className="text-gray-600">Quality Control Manager</p>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       
       <Footer />

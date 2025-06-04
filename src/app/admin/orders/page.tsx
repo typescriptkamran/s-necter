@@ -3,12 +3,12 @@ import React from "react";
 import OrderList from "@/components/orders/List";
 import { Order } from "@/types";
 import { supabase } from "@/supabase/db";
-import Filter from "./client";
+import { Filter, SearchInput } from "./client";
 import { getProducts } from "@/supabase/methods";
 
-export const dynamic = 'force-dynamic'; // Forces the page to be SSR, disables caching
+export const dynamic = "force-dynamic"; // Forces the page to be SSR, disables caching
 const getOrders = async () => {
-    "use server"
+    "use server";
     let data: Order[] | null = null, error = "";
     try {
         const { data: $data, error: $error } = await supabase.from(
@@ -24,11 +24,19 @@ const getOrders = async () => {
 const OrdersManagement: React.FC = async () => {
     const { data: orderData, error: orderError } = await getOrders();
     if (orderError || !orderData) return <p>{orderError}</p>;
-        const { data: productData, error: productError } = await getProducts();
+    const { data: productData, error: productError } = await getProducts();
     if (productError || !productData) return <p>{productError.message}</p>;
 
     return (
         <div>
+            <div className="flex justify-between items-center mb-6">
+                <h1 className="text-2xl font-bold">Orders Management</h1>
+                <span>
+                <SearchInput />
+
+                </span>
+            </div>
+
             <Filter />
             <OrderList orders={orderData} products={productData} />
         </div>

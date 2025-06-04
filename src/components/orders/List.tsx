@@ -8,33 +8,43 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/generic/Table";
-import {CheckCircle, Clock, Info, LoaderCircle} from 'lucide-react'
+import { CheckCircle, Clock, Info, LoaderCircle } from "lucide-react";
 import React, { useActionState, useEffect } from "react";
 import { useOrder } from "@/context/OrderContext";
 import { Button } from "@/components/generic/Button";
 import { changeOrderStatus } from "@/actions/admin/orders";
-// import { useProduct } from "@/context/ProductContext";
+import { useSearch } from "@/context/SearchContext";
 
-const OrderList = ({orders, products}: {orders: Order[], products: Product[]}) => {
-
+const OrderList = (
+    { orders, products }: { orders: Order[]; products: Product[] },
+) => {
     const { setOrders, filterBy, orderList } = useOrder();
-    // const {productList} = useProduct();
-    const filteredOrders = filterBy === "all"
-        ? orderList
-        : orderList.filter((order) => order.status === filterBy);
-
-    // function getOtherStatus(status: OrderStatusType) {
-    //     return status === "completed" ? "pending" : "completed";
-    // }
+    const { dispatch, state } = useSearch<Order>();
 
     useEffect(() => {
-        setOrders(orders)
-    }, [orders])
+        setOrders(orders);
+    }, [orders]);
 
+    useEffect(() => {
+        if (orderList.length > 0) {
+            dispatch({
+                type: "SET_DATASET",
+                payload: orderList,
+            });
+        }
+    }, [orderList]);
+    const $orders = state.dataSet.filter((data) =>
+        data.name?.toLowerCase().includes(
+            state.searchTerm.toLowerCase(),
+        )
+    );
+    const filteredOrders = filterBy === "all"
+        ? $orders
+        : $orders.filter((order) => order.status === filterBy);
 
     return (
         <div className="bg-white rounded-md shadow-sm overflow-hidden">
-            {orderList.length > 0
+            {filteredOrders.length > 0
                 ? (
                     <Table>
                         <TableHeader>
@@ -72,7 +82,9 @@ const OrderList = ({orders, products}: {orders: Order[], products: Product[]}) =
                                                 index,
                                             ) => (
                                                 <li key={index}>
-                                                    {products.find(p => p.id === item.id)?.name} × {item.count}
+                                                    {products.find((p) =>
+                                                        p.id === item.id
+                                                    )?.name} × {item.count}
                                                 </li>
                                             ))}
                                         </ul>
@@ -89,7 +101,10 @@ const OrderList = ({orders, products}: {orders: Order[], products: Product[]}) =
                                         </span>
                                     </TableCell>
                                     <TableCell>
-                                    <MarkButton id={order.id} state={order.status}/>
+                                        <MarkButton
+                                            id={order.id}
+                                            state={order.status}
+                                        />
                                     </TableCell>
                                 </TableRow>
                             ))}
