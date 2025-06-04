@@ -4,10 +4,12 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import Sidebar from '@/components/cart/Sidebar';
 // import SEOHead from '../components/seo/SEOHead';
-import { Button } from '@/components/generic/Button';
-import { Input } from '@/components/generic/Input';
+// import { Button } from '@/components/generic/Button';
+// import { Input } from '@/components/generic/Input';
 import { Card, CardContent } from '@/components/generic/Card';
-import { Phone, Mail, MessageSquare, Info } from 'lucide-react';
+import { Phone, Mail,
+  //  MessageSquare, Info 
+  } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
