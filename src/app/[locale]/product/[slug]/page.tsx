@@ -61,14 +61,13 @@ export default async function ProductPage({ params: $params }: PageProps) {
       <main className="flex-grow pt-24 pb-16">
         <div className="section-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="rounded-lg overflow-hidden shadow-md">
+            <div className="rounded-lg relative h-80 w-full overflow-hidden shadow-md">
               <Image
                 src={product.image!}
                 alt={product.name!}
-                className="w-full h-auto object-cover"
+                className="object-contain"
                 loading="lazy"
-                width={800}
-                height={600}
+                fill
               />
             </div>
 
