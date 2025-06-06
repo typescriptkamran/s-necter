@@ -17,15 +17,14 @@ const Card: React.FC<ProductCardProps> = ({ product }: ProductCardProps) => {
   return (
     <div className="block">
       <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-        <div className="relative pb-[75%] overflow-hidden">
-          <Image
-            width={300}
-            height={400}
-            src={product.image ?? ""}
-            alt={product.name ?? ""}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-          />
-        </div>
+      <div className="relative h-64 w-full bg-gray-100">
+  <Image
+    fill
+    src={product.image ?? ""}
+    alt={product.name ?? ""}
+    className="object-contain"
+  />
+</div>
 
         <div className="p-5">
           <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
