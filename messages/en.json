@@ -6,7 +6,7 @@
     "contact": "Contact"
   },
   "product": {
-    "price": "$ {price}"
+    "price": "{price} Rupees"
   },
   "meta": {
     "title": "Pure Honey & Desi Ghee | KhalisG",
