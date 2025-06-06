@@ -17,7 +17,10 @@ const NavBar: React.FC = () => {
   const background = useTransform(scrollY, [0, 50], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 1)"]);
   const color = useTransform(scrollY, [0, 50], ["#F9F6F1", "#000000"]);
   const [animate,setAnimate] = useState(false)
+  const [hasMounted, setHasMounted] = useState(false);
+
   useEffect(() => {
+    setHasMounted(true)
     if (pathname === '/') {
       setAnimate(true)
     } else setAnimate(false)
@@ -31,7 +34,7 @@ const NavBar: React.FC = () => {
           backgroundColor: background,
           color
         }:{}}
-        className={(animate ? '' : 'bg-white') + ' ' + "fixed w-full top-0 z-50 shadow-sm"}>
+        className={(animate || !hasMounted ? '' : 'bg-white') + ' ' + "fixed w-full top-0 z-50 shadow-sm"}>
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-xl font-semibold">
@@ -90,7 +93,7 @@ const NavBar: React.FC = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <nav className="md:hidden bg-white shadow-lg p-4">
+        <nav className="md:hidden  backdrop-blur-xs shadow-lg p-4">
           <div className="flex flex-col space-y-4">
             <Link 
               href="/" 
